@@ -12,6 +12,7 @@ import {
 } from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { APP_ICONS, getSafeIconName } from '../utils/iconUtils';
 
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList, Task } from '../types';
@@ -158,10 +159,10 @@ export const TaskListScreen: React.FC<TaskListScreenProps> = ({ navigation }) =>
           
           {searchTerm.trim().length === 0 && (
             <View style={styles.emptyActionHints}>
-              <Chip icon="plus" mode="outlined" style={styles.actionChip}>
+              <Chip icon={getSafeIconName(APP_ICONS.ADD)} mode="outlined" style={styles.actionChip}>
                 Add Task
               </Chip>
-              <Chip icon="microphone" mode="outlined" style={styles.actionChip}>
+              <Chip icon={getSafeIconName(APP_ICONS.MICROPHONE)} mode="outlined" style={styles.actionChip}>
                 Voice Input
               </Chip>
             </View>
@@ -200,7 +201,7 @@ export const TaskListScreen: React.FC<TaskListScreenProps> = ({ navigation }) =>
         <Surface style={styles.headerSurface}>
           <View style={styles.headerContent}>
             <View style={styles.headerTitleSection}>
-              <Icon name="clipboard-check-multiple" size={28} color="white" style={styles.headerIcon} />
+              <Icon name={getSafeIconName(APP_ICONS.CLIPBOARD_CHECK)} size={28} color="white" style={styles.headerIcon} />
               <View>
                 <Text variant="headlineSmall" style={styles.headerTitle}>
                   Todo Manager
@@ -213,14 +214,14 @@ export const TaskListScreen: React.FC<TaskListScreenProps> = ({ navigation }) =>
             
             <View style={styles.headerActions}>
               <IconButton
-                icon="weather-night"
+                icon={getSafeIconName(APP_ICONS.THEME_DARK)}
                 size={24}
                 onPress={toggleTheme}
                 iconColor="white"
                 style={styles.headerActionButton}
               />
               <IconButton
-                icon="information"
+                icon={getSafeIconName(APP_ICONS.INFO)}
                 size={24}
                 onPress={() => Alert.alert(
                   '� TodoList Pro',
@@ -239,7 +240,7 @@ export const TaskListScreen: React.FC<TaskListScreenProps> = ({ navigation }) =>
         <View style={styles.statsRow}>
           <Card style={[styles.statCard, { backgroundColor: paperTheme.colors.primaryContainer }]}>
             <Card.Content style={styles.statContent}>
-              <Icon name="clock-outline" size={20} color={paperTheme.colors.onPrimaryContainer} />
+              <Icon name={getSafeIconName(APP_ICONS.CLOCK)} size={20} color={paperTheme.colors.onPrimaryContainer} />
               <Text variant="labelSmall" style={{ color: paperTheme.colors.onPrimaryContainer }}>
                 Pending
               </Text>
@@ -251,7 +252,7 @@ export const TaskListScreen: React.FC<TaskListScreenProps> = ({ navigation }) =>
           
           <Card style={[styles.statCard, { backgroundColor: paperTheme.colors.secondaryContainer }]}>
             <Card.Content style={styles.statContent}>
-              <Icon name="check-circle-outline" size={20} color={paperTheme.colors.onSecondaryContainer} />
+              <Icon name={getSafeIconName(APP_ICONS.COMPLETE)} size={20} color={paperTheme.colors.onSecondaryContainer} />
               <Text variant="labelSmall" style={{ color: paperTheme.colors.onSecondaryContainer }}>
                 Completed
               </Text>
@@ -263,7 +264,7 @@ export const TaskListScreen: React.FC<TaskListScreenProps> = ({ navigation }) =>
           
           <Card style={[styles.statCard, { backgroundColor: paperTheme.colors.tertiaryContainer }]}>
             <Card.Content style={styles.statContent}>
-              <Icon name="format-list-bulleted" size={20} color={paperTheme.colors.onTertiaryContainer} />
+              <Icon name={getSafeIconName(APP_ICONS.LIST)} size={20} color={paperTheme.colors.onTertiaryContainer} />
               <Text variant="labelSmall" style={{ color: paperTheme.colors.onTertiaryContainer }}>
                 Total
               </Text>

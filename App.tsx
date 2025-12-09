@@ -23,6 +23,9 @@ import { RootStackParamList } from './src/types';
 // Services
 import { VoiceService } from './src/services/VoiceService';
 
+// Icon configuration
+import { initializeIcons } from './src/config/iconConfig';
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 /**
@@ -93,6 +96,9 @@ const requestAndroidPermissions = async (): Promise<void> => {
  */
 const initializeApp = async (): Promise<void> => {
   try {
+    // Initialize icons
+    await initializeIcons();
+    
     // Initialize voice service
     await VoiceService.initialize();
 

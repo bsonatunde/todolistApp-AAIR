@@ -12,6 +12,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Task } from '../types';
+import { APP_ICONS, getSafeIconName } from '../utils/iconUtils';
 
 interface TaskItemProps {
   task: Task;
@@ -61,10 +62,10 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   };
 
   const getStatusIcon = (): string => {
-    if (task.completed) return 'check-circle';
-    if (isOverdue(task.dueDate)) return 'alert-circle';
-    if (isDueToday(task.dueDate)) return 'clock-alert';
-    return 'circle-outline';
+    if (task.completed) return getSafeIconName(APP_ICONS.TASK_COMPLETED);
+    if (isOverdue(task.dueDate)) return getSafeIconName(APP_ICONS.TASK_OVERDUE);
+    if (isDueToday(task.dueDate)) return getSafeIconName(APP_ICONS.TASK_DUE_TODAY);
+    return getSafeIconName(APP_ICONS.TASK_PENDING);
   };
 
   const getStatusColor = (): string => {
@@ -144,7 +145,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
                 <View style={styles.metadataRow}>
                   {task.dueDate && (
                     <Chip 
-                      icon={isDueToday(task.dueDate) ? "calendar-today" : "calendar-clock"}
+                      icon={getSafeIconName(isDueToday(task.dueDate) ? APP_ICONS.CALENDAR_TODAY : APP_ICONS.CALENDAR_CLOCK)}
                       mode="outlined"
                       compact
                       style={[
@@ -172,7 +173,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
               <View style={styles.actionsSection}>
                 {onEdit && (
                   <IconButton
-                    icon="pencil"
+                    icon={getSafeIconName(APP_ICONS.EDIT)}
                     size={20}
                     onPress={() => onEdit(task)}
                     iconColor={theme.colors.primary}
@@ -180,7 +181,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
                   />
                 )}
                 <IconButton
-                  icon="delete"
+                  icon={getSafeIconName(APP_ICONS.DELETE)}
                   size={20}
                   onPress={() => onDelete(task.id)}
                   iconColor={theme.colors.error}

@@ -14,6 +14,7 @@ import {
 } from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { APP_ICONS, getSafeIconName } from '../utils/iconUtils';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import { useTask } from '../context/TaskContext';
@@ -161,21 +162,21 @@ export const AddTaskScreen: React.FC<AddTaskScreenProps> = ({ navigation }) => {
         <Surface style={styles.headerSurface}>
           <View style={styles.headerContent}>
             <IconButton
-              icon="arrow-left"
+              icon={getSafeIconName(APP_ICONS.BACK)}
               size={24}
               onPress={() => navigation.goBack()}
               iconColor="white"
             />
             
             <View style={styles.headerTitleSection}>
-              <Icon name="plus-circle-outline" size={24} color="white" style={styles.headerIcon} />
+              <Icon name={getSafeIconName(APP_ICONS.PLUS_CIRCLE)} size={24} color="white" style={styles.headerIcon} />
               <Text variant="headlineSmall" style={styles.headerTitle}>
                 Create New Task
               </Text>
             </View>
             
             <IconButton
-              icon="help-circle-outline"
+              icon={getSafeIconName(APP_ICONS.HELP)}
               size={24}
               onPress={() => Alert.alert(
                 '💡 Smart Task Creation',
@@ -209,11 +210,11 @@ export const AddTaskScreen: React.FC<AddTaskScreenProps> = ({ navigation }) => {
           <Card style={[styles.professionalCard, { backgroundColor: paperTheme.colors.surfaceVariant }]}>
             <Card.Content>
               <View style={styles.sectionHeader}>
-                <Icon name="clipboard-text" size={24} color={paperTheme.colors.primary} />
+                <Icon name={getSafeIconName(APP_ICONS.CLIPBOARD)} size={24} color={paperTheme.colors.primary} />
                 <Text variant="titleLarge" style={[styles.sectionTitle, { color: paperTheme.colors.primary }]}>
                   Task Information
                 </Text>
-                <Chip icon="asterisk" mode="outlined" compact style={styles.requiredChip}>
+                <Chip icon={getSafeIconName(APP_ICONS.REQUIRED)} mode="outlined" compact style={styles.requiredChip}>
                   Required
                 </Chip>
               </View>
@@ -232,8 +233,8 @@ export const AddTaskScreen: React.FC<AddTaskScreenProps> = ({ navigation }) => {
                   placeholder="What needs to be done?"
                   maxLength={100}
                   autoFocus
-                  left={<TextInput.Icon icon="format-title" />}
-                  right={<TextInput.Icon icon={title.length > 0 ? "check-circle" : "circle-outline"} />}
+                  left={<TextInput.Icon icon={getSafeIconName(APP_ICONS.TITLE)} />}
+                  right={<TextInput.Icon icon={getSafeIconName(title.length > 0 ? APP_ICONS.CHECK : APP_ICONS.TASK_PENDING)} />}
                 />
                 <HelperText type={titleError ? "error" : "info"} visible={true}>
                   {titleError || `${title.length}/100 characters - Be specific and clear`}

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { FAB, useTheme as usePaperTheme } from 'react-native-paper';
 import { useVoiceInput } from '../hooks/useVoiceInput';
+import { APP_ICONS, getSafeIconName } from '../utils/iconUtils';
 
 interface VoiceFABProps {
   onAddTaskPress: () => void;
@@ -26,7 +27,7 @@ export const VoiceFAB: React.FC<VoiceFABProps> = ({ onAddTaskPress }) => {
     <View style={styles.fabContainer}>
       {/* Voice Input FAB */}
       <FAB
-        icon={isListening ? 'microphone' : 'microphone-outline'}
+        icon={getSafeIconName(isListening ? APP_ICONS.MICROPHONE : 'microphone-outline')}
         size="medium"
         style={[
           styles.voiceFab,
@@ -45,7 +46,7 @@ export const VoiceFAB: React.FC<VoiceFABProps> = ({ onAddTaskPress }) => {
       
       {/* Regular Add Task FAB */}
       <FAB
-        icon="plus"
+        icon={getSafeIconName(APP_ICONS.ADD)}
         size="large"
         style={[styles.addFab, { backgroundColor: theme.colors.primary }]}
         onPress={onAddTaskPress}
